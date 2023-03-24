@@ -5,8 +5,8 @@ public class Pizza {
     private int price;
     private Boolean isVeg;
     private String bill;
-    private int cheese;
-    private int toppings;
+    private boolean cheese;
+    private boolean toppings;
     private boolean takeAway;
 
     public Pizza(Boolean isVeg){
@@ -18,8 +18,6 @@ public class Pizza {
             this.price=400;
         }
         this.bill="";
-        this.cheese=0;
-        this.toppings=0;
     }
 
     public int getPrice(){
@@ -28,19 +26,20 @@ public class Pizza {
 
     public void addExtraCheese(){
         // your code goes here
-
+        if(!this.cheese) {
             this.price = this.price + 80;
-            this.cheese++;
+            this.cheese=true;
+        }
     }
 
     public void addExtraToppings(){
         // your code goes here
-        if(this.isVeg ){
+        if(this.isVeg && !this.toppings){
             this.price+=70;
-        }else {
+        }else if(!this.toppings){
             this.price+=120;
         }
-        this.toppings++;
+        this.toppings=true;
 
     }
 
@@ -56,19 +55,19 @@ public class Pizza {
         // your code goes here
         if(isVeg){
             this.bill+="Base Price Of The Pizza: 300 \n";
-            if(this.cheese !=0){
-                this.bill+="Extra Cheese Added: "+ 80*this.cheese+ "\n";
+            if(this.cheese){
+                this.bill+="Extra Cheese Added: 80 \n";
             }
-            if(this.toppings != 0){
-                this.bill+="Extra Toppings Added: " +70*this.toppings+ " \n";
+            if(this.toppings){
+                this.bill+="Extra Toppings Added: 70 \n";
             }
         }else{
             this.bill+="Base Price Of The Pizza: 400 \n";
-            if(this.cheese != 0){
-                this.bill+="Extra Cheese Added: "+ 80 * this.cheese+"\n";
+            if(this.cheese){
+                this.bill+="Extra Cheese Added: 80 \n";
             }
-            if(this.toppings != 0){
-                this.bill+="Extra Toppings Added: "+120*this.toppings+" \n";
+            if(this.toppings){
+                this.bill+="Extra Toppings Added: 120 \n";
             }
         }
         if(this.takeAway){
